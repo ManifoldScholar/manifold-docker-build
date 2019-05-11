@@ -1,0 +1,20 @@
+FROM ruby:2.3.5
+
+RUN echo "deb [check-valid-until=no] http://cdn-fastly.deb.debian.org/debian jessie main" > /etc/apt/sources.list.d/jessie.list
+RUN echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
+RUN sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list
+RUN apt-get -o Acquire::Check-Valid-Until=false update
+
+RUN apt-get install -y libicu-dev postgresql-client nano
+
+COPY src /opt/manifold
+WORKDIR /opt/manifold
+
+ENV RAILS_LOG_TO_STDOUT=1 RAILS_SERVE_STATIC_FILES=1 RAILS_SERVER_SOCKET_DIR=/manifold_sockets RAILS_SERVER_SOCKET_PATH=/manifold_sockets/manifold-api
+
+RUN gem update --system && gem install bundler
+
+WORKDIR /opt/manifold/api
+RUN bundle install
+
+VOLUME ["/manifold_sockets","/manifold_data"]
