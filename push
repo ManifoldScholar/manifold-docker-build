@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+def push(image_name, version)
+  cmds = [
+      "docker push manifoldscholar/#{image_name}:#{version}",
+  ]
+  cmds.each do |cmd|
+    puts cmd
+    system cmd
+  end
+end
+
+version = ARGV[0] || nil
+image_name = ARGV[1]
+
+images = [
+  "manifold_api_base",
+  "manifold_api_rails",
+  "manifold_api_cable",
+  "manifold_api_clockwork",
+  "manifold_api_sidekiq",
+  "manifold_client",
+  "manifold_proxy"
+]
+
+if !image_name
+  images.each do |image|
+    push(image, version)
+  end
+else
+  push(image_name, version)
+end
