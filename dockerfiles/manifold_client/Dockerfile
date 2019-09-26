@@ -1,4 +1,4 @@
-FROM node:8.11.2
+FROM node:8.16.0
 
 ARG MANIFOLD_VERSION
 
