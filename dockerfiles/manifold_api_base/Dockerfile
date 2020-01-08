@@ -7,7 +7,7 @@ RUN apt-get -o Acquire::Check-Valid-Until=false update
 
 RUN apt-get install -y libicu-dev postgresql-client nano
 
-COPY src /opt/manifold
+COPY manifold-src /opt/manifold
 WORKDIR /opt/manifold
 
 ENV RAILS_LOG_TO_STDOUT=1 RAILS_SERVE_STATIC_FILES=1 RAILS_SERVER_SOCKET_DIR=/manifold_sockets RAILS_SERVER_SOCKET_PATH=/manifold_sockets/manifold-api
