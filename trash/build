@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+def build_image(image_name, version)
+  cmds = [
+      "docker image rm manifoldscholar/#{image_name}:#{version}",
+      "docker build \
+              --no-cache \
+              --build-arg MANIFOLD_VERSION=#{version} \
+              -t manifoldscholar/#{image_name}#{version ? ":#{version}" : ""} \
+              -f ./dockerfiles/#{image_name}/Dockerfile ."
+  ]
+  cmds.each do |cmd|
+    puts cmd
+    system cmd
+  end
+end
+
+version = ARGV[0] || nil
+image_name = ARGV[1]
+
+images = [
+  "manifold_api_base",
+  "manifold_api_rails",
+  "manifold_api_cable",
+  "manifold_api_clockwork",
+  "manifold_api_sidekiq",
+  "manifold_client",
+  "manifold_proxy"
+]
+
+if !image_name
+  images.each do |image|
+    build_image(image, version)
+  end
+else
+  build_image(image_name, version)
+end
