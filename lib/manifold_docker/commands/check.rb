@@ -14,10 +14,16 @@ module ManifoldDocker
       end
 
       def execute(input: $stdin, output: $stdout)
-        exists = image_names.all? do |image|
-          image_exists?(image, @version)
+        missing = []
+        image_names.each do |image|
+          missing << versioned_image(image, @version) unless image_exists?(image, @version)
         end
-        puts JSON.generate(exists)
+        exists = missing.empty?
+        if @options[:list_missing]
+          puts JSON.generate(missing)
+        else
+          puts JSON.generate(exists)
+        end
       end
 
     end
