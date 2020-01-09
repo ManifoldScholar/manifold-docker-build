@@ -5,14 +5,14 @@ require_relative './base'
 
 module ManifoldDocker
   module Commands
-    class Push < ManifoldDocker::Command
-      def initialize(options)
+    class Push < Base
+      def initialize(version, options)
+        @version = version
         @options = options
       end
 
       def execute(input: $stdin, output: $stdout)
-        # Command logic goes here ...
-        output.puts "OK"
+
       end
     end
   end

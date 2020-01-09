@@ -19,15 +19,17 @@ module ManifoldDocker
     end
     map %w(--version -v) => :version
 
-    desc 'push', 'Command description...'
+    desc 'push VERSION', 'Command description...'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
-    def push(*)
+    method_option :username, type: :string, default: false, desc: "Docker hub username"
+    method_option :password, type: :string, default: false, desc: "Docker hub password"
+    def push(version)
       if options[:help]
         invoke :help, ['push']
       else
         require_relative 'commands/push'
-        ManifoldDocker::Commands::Push.new(options).execute
+        ManifoldDocker::Commands::Push.new(version, options).execute
       end
     end
 
@@ -59,6 +61,7 @@ module ManifoldDocker
     desc 'check VERSION', 'Check if images for a given version exist'
     method_option :help, aliases: '-h', type: :boolean,
                   desc: 'Display usage information'
+    method_option :list_missing, type: :boolean, default: false, desc: "If true, list missing packages"
     def check(version)
       if options[:help]
         invoke :help, ['check']
