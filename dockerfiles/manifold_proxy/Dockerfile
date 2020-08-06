@@ -9,7 +9,7 @@ COPY dockerfiles/manifold_proxy/includes/manifold-client-local /etc/nginx/includ
 COPY dockerfiles/manifold_proxy/includes/manifold-server-local /etc/nginx/includes/manifold-server-local
 
 COPY dockerfiles/manifold_proxy/scripts/install-self-signed-cert /usr/local/bin/install-self-signed-cert
-
+COPY dockerfiles/manifold_proxy/scripts/start-nginx /usr/local/bin/start-nginx
 
 VOLUME ["/manifold_sockets","/manifold_data"]
 
