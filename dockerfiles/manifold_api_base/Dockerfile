@@ -12,7 +12,7 @@ WORKDIR /opt/manifold
 
 ENV RAILS_LOG_TO_STDOUT=1 RAILS_SERVE_STATIC_FILES=1 RAILS_SERVER_SOCKET_DIR=/manifold_sockets RAILS_SERVER_SOCKET_PATH=/manifold_sockets/manifold-api
 
-RUN gem update --system && gem install bundler:1.17.2
+RUN gem update --system && gem install bundler:1.17.3
 
 WORKDIR /opt/manifold/api
 RUN bundle install
