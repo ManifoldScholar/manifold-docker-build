@@ -12,15 +12,15 @@ SUBJECT="/C=${COUNTRY}/ST=${STATE}/L=${LOCATION}/O=${ORGANIZATION}/OU=${UNIT}/CN
 CERTPATH="${DIR}/${KEYNAME}.crt"
 KEYPATH="${DIR}/${KEYNAME}.key"
 
+
 if [ -f $CERTPATH ]; then
-  echo "No can do. ${CERTPATH} already exists!"
   exit
 fi
 
 if [ -f $KEYPATH ]; then
-  echo "No can do. ${KEYPATH} already exists!"
   exit
 fi
 
 mkdir -p $DIR
+echo "Creating self-signed certificate..."
 openssl req -new -newkey rsa:2048 -x509 -sha256 -days 730 -nodes -out $CERTPATH -keyout $KEYPATH -subj "${SUBJECT}"
