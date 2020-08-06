@@ -22,8 +22,8 @@ module ManifoldDocker
     desc 'push VERSION', 'Command description...'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
-    method_option :username, type: :string, default: false, desc: "Docker hub username"
-    method_option :password, type: :string, default: false, desc: "Docker hub password"
+    method_option :username, type: :string, default: nil, desc: "Docker hub username"
+    method_option :password, type: :string, default: nil, desc: "Docker hub password"
     def push(version)
       if options[:help]
         invoke :help, ['push']
