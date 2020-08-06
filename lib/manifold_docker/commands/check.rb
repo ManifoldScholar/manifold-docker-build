@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require "pathname"
 require "tty-command"
+require "json"
 require_relative '../command'
 require_relative './base'
 
