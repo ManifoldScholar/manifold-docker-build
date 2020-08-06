@@ -41,7 +41,7 @@ module ManifoldDocker
 
       def login(username, password)
         exe = "docker login -u #{username} -p #{password}"
-        out, err = cmd(:pretty).run(exe)          
+        out, err = cmd(:pretty).run(exe)
       end
 
       def image_exists?(image, the_version = default_version)
