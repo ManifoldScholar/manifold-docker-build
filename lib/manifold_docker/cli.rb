@@ -36,7 +36,8 @@ module ManifoldDocker
     desc 'build', 'Command description...'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
-    method_option :no_overwrite, type: :boolean, default: false, desc: "If true, existing packages will be overwritten"
+    method_option :no_overwrite, type: :boolean, default: false, desc: "If true, existing packages will be overwritten."
+    method_option :not_interactive, type: :boolean, default: false, desc: "If true, user will not be prompted."
     def build(*)
       if options[:help]
         invoke :help, ['build']
