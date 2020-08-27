@@ -16,7 +16,8 @@ module ManifoldDocker
         unless @options[:no_overwrite]
           unless existing.empty?
             existing.each do |image|
-              overwrite << image unless prompt.no?("#{image} exists. Overwrite?")
+              overwrite << image && next if @options[:not_interactive]
+              overwrite << image if prompt.yes?("#{image} exists. Overwrite?")
             end
           end
         end
