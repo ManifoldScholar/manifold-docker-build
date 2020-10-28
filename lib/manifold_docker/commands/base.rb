@@ -51,14 +51,12 @@ module ManifoldDocker
       end
 
       def versioned_image(image, the_version = default_version)
-        "manifoldscholar/#{image}:#{the_version}"
+        "manifoldscholarship/#{image}:#{the_version}"
       end
 
       def image_names
         dirs = Pathname.new(File.join(ROOT, "dockerfiles")).children.select { |c| c.directory? }
-        images = dirs.map { |d| File.basename(d) }
-        # We always need to build the base image first.
-        images.rotate(images.find_index("manifold_api_base"))
+        dirs.map { |d| File.basename(d) }
       end
 
       def default_version

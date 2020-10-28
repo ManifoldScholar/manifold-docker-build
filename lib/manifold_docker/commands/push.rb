@@ -12,7 +12,12 @@ module ManifoldDocker
       end
 
       def execute(input: $stdin, output: $stdout)
-
+        image_names.each do |image|
+          name = versioned_image(image, @version)
+          puts "Pushing image #{name}"
+          exe = "docker push #{name}"
+          out, err = cmd.run(exe)
+        end
       end
     end
   end
