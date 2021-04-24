@@ -33,17 +33,17 @@ module ManifoldDocker
       end
     end
 
-    desc 'build', 'Command description...'
+    desc 'build [TAG]', 'Command description...'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
     method_option :no_overwrite, type: :boolean, default: false, desc: "If true, existing packages will be overwritten."
     method_option :not_interactive, type: :boolean, default: false, desc: "If true, user will not be prompted."
-    def build(*)
+    def build(tag = nil)
       if options[:help]
         invoke :help, ['build']
       else
         require_relative 'commands/build'
-        ManifoldDocker::Commands::Build.new(options).execute
+        ManifoldDocker::Commands::Build.new(options).execute(tag)
       end
     end
 
