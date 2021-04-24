@@ -9,7 +9,7 @@ module ManifoldDocker
   module Commands
     class Build < Base
 
-      def execute(input: $stdin, output: $stdout)
+      def execute(tag, input: $stdin, output: $stdout)
         existing = existing_images
         overwrite = []
 
@@ -26,10 +26,10 @@ module ManifoldDocker
           if existing.include? image
             puts "Skipping image: #{image}." && next unless overwrite.include? image
             puts "Deleting image: #{image}"
-            clean_image(image)
+            clean_image(image, tag)
           end
           puts "Creating image: #{image}..."
-          create_image(image)
+          create_image(image, tag)
         end
       end
 
