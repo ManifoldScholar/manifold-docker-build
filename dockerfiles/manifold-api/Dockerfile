@@ -1,4 +1,4 @@
-FROM ruby:2.6.7
+FROM ruby:2.7.3
 RUN apt-get -o Acquire::Check-Valid-Until=false update
 RUN apt-get install -y libicu-dev postgresql-client nano curl software-properties-common
 
