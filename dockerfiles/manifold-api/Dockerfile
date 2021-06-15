@@ -1,6 +1,6 @@
 FROM ruby:2.7.3
 RUN apt-get -o Acquire::Check-Valid-Until=false update
-RUN apt-get install -y libicu-dev postgresql-client nano curl software-properties-common
+RUN apt-get install -y libicu-dev postgresql-client nano curl software-properties-common ghostscript
 
 # We need Node and Mammoth for Word text ingestion
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
