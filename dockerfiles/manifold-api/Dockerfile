@@ -7,6 +7,9 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install -g mammoth@^1.4.16
 
+RUN sed -i '/<policy domain="coder" rights="none" pattern="PDF" \/>/d' \
+    /etc/ImageMagick-6/policy.xml
+
 COPY manifold-src/api /opt/manifold/api
 WORKDIR /opt/manifold/api
 ENV RAILS_LOG_TO_STDOUT=1
