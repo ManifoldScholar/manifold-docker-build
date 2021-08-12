@@ -8,6 +8,11 @@ We're currently using `manifoldscholar` for our live, production Docker images. 
 
 # Building and Pushing Images
 
+Build the API dev image:
+```
+docker build --no-cache --build-arg MANIFOLD_VERSION=v6.0.0-development.1 -t manifoldscholarship/manifold-api-dev:v6.0.0-development.1 -f ./dockerfiles/manifold-api-dev/Dockerfile .
+```
+
 Build the API:
 ```
 docker build --no-cache --build-arg MANIFOLD_VERSION=v5.1.4-beta.1 -t manifoldscholar/manifold-api:v5.1.4-beta.1 -f ./dockerfiles/manifold-api/Dockerfile .
