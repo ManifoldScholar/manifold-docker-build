@@ -6,6 +6,7 @@ RUN apt-get install -y libicu-dev postgresql-client nano curl software-propertie
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install -g mammoth@^1.4.16
+ENV MAMMOTH_PATH=/usr/lib/node_modules/mammoth/bin/mammoth
 
 RUN sed -i '/<policy domain="coder" rights="none" pattern="PDF" \/>/d' \
     /etc/ImageMagick-6/policy.xml
