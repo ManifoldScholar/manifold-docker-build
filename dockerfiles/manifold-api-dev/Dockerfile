@@ -13,6 +13,6 @@ RUN sed -i '/<policy domain="coder" rights="none" pattern="PDF" \/>/d' \
 COPY manifold-src /opt/manifold
 WORKDIR /opt/manifold/api
 ENV RAILS_LOG_TO_STDOUT=1
-RUN gem update --system && gem install bundler:2.2.17
+RUN gem update --system && gem install bundler:2.2.19
 RUN bundle install
 COPY dockerfiles/manifold-api/scripts/start-and-run /opt/manifold/api/start-and-run

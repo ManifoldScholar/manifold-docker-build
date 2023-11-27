@@ -1,4 +1,4 @@
-FROM nginx:1.20
+FROM nginx:1.25
 
 RUN apt-get -o Acquire::Check-Valid-Until=false update
 RUN apt-get install -y openssl
